@@ -28,7 +28,7 @@ function Assert(test) {
 }
 
 function AssertEqual(a, b) {
-  if (a !== b) throw Error("Assert! " + a + " !== " + b)
+  if (a !== b) throw Error(`Assert! ${a} !== ${b}`)
 }
 
 Test("The testsuite should be greed", () => {})
@@ -53,4 +53,4 @@ const failedTests = tests.filter((test) => !test).length
 if (failedTests === 0)
   console.log("All " + tests.length + " tests are green!")
 else
-  console.log("Somethings up! " + failedTests + " / " + tests.length + " tests failed!")
+  console.log(`Somethings up! ${failedTests} / ${tests.length} tests failed!`)
