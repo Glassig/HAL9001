@@ -1,0 +1,22 @@
+env:
+  browser: true
+  jquery: true
+extends: 
+  - eslint:recommended
+  - standard
+rules:
+  indent:
+    - error
+    - 2
+    - SwitchCase: 1
+      VariableDeclarator: { var: 2, let: 2, const: 3 }
+  space-before-function-paren:
+    - error
+    - never
+  one-var:
+    - 2
+    - always
+  quotes:
+    - error
+    - double
+    - allowTemplateLiterals: true
