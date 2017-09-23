@@ -27,9 +27,8 @@ function loadTables() {
   var id = sessionStorage.getItem("id"), tableBody = $(".table_body")
   Trello.get(`members/${id}/boards`, function tableInfo(data) {
     data.forEach(function createOneRow(table) {
-      if (!table.closed) {
+      if (!table.closed)
         tableBody.append(`<tr><td>${table.name}</td><td>${table.id}</td></tr>`)
-      }
     })
   }).then(function() {
     loadBoardLists(tyrsta)

@@ -6,6 +6,7 @@ extends:
   - standard
 globals:
   Trello: true
+  DivvyUpTheBooty: true
 rules:
   indent:
     - error
@@ -22,4 +23,6 @@ rules:
     - error
     - double
     - allowTemplateLiterals: true
-
+  curly:
+    - error
+    - multi-or-nest
