@@ -4,7 +4,7 @@ var tyrsta = "59abb93b56d8cfafda3b0e5f",
       console.log("Failed authentication")
     }
 
-window.Trello.authorize({
+Trello.authorize({
   type: "popup",
   name: "Getting Started Application",
   scope: {
@@ -16,29 +16,29 @@ window.Trello.authorize({
 })
 
 function getUserData() {
-  window.Trello.get("/members/me", function dataInfo(data) {
-    window.sessionStorage.setItem("id", data.id)
+  Trello.get("/members/me", function dataInfo(data) {
+    sessionStorage.setItem("id", data.id)
   }).then(function() {
     loadTables()
   })
 }
 
 function loadTables() {
-  var id = window.sessionStorage.getItem("id"), tableBody = $(".table_body")
-  window.Trello.get(`members/${id}/boards`, function tableInfo(data) {
+  var id = sessionStorage.getItem("id"), tableBody = $(".table_body")
+  Trello.get(`members/${id}/boards`, function tableInfo(data) {
     data.forEach(function createOneRow(table) {
       if (!table.closed) {
         tableBody.append(`<tr><td>${table.name}</td><td>${table.id}</td></tr>`)
       }
     })
   }).then(function() {
-    loadBoardLists(breakList)
+    loadBoardLists(tyrsta)
   })
 }
 
 function loadBoardLists(boardId) {
-  window.Trello.get(`boards/${boardId}/lists/`, function boardInfo(data) {
-    window.Trello.get(`lists/${data[0].id}/cards`, function allCards(cards) {
+  Trello.get(`boards/${boardId}/lists/`, function boardInfo(data) {
+    Trello.get(`lists/${data[0].id}/cards`, function allCards(cards) {
       console.log(cards)
     })
   })
