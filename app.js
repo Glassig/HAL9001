@@ -1,8 +1,10 @@
-var tyrsta = "59abb93b56d8cfafda3b0e5f",
-    breakList = "59b69f8384c268984ad9d602",
-    authenticationFailure = function() {
-      console.error("Failed authentication")
-    }
+const tyrsta = "59abb93b56d8cfafda3b0e5f",
+      angelinaListID = "59afa1724e02795f082f3d75",
+      andreasListID = "59b5a67b07cfaf5ce036a978"
+
+function authenticationFailure() {
+  console.error("Failed authentication")
+}
 
 Trello.authorize({
   type: "popup",
@@ -57,14 +59,12 @@ function renderTable(name, list, sum, container) {
 }
 
 function loadBoardLists(boardId) {
-  Trello.get(`boards/${boardId}/lists/`, function boardInfo(data) {
-    Promise.all([loadList(data[4].id), loadList(data[5].id)]).then(lists => {
-      const tables = $(".tables")
-      tables.empty()
-      const booty = DivvyUpTheBooty(lists[0], lists[1])
-      renderTable("Angelina", lists[0], booty.angelina, tables)
-      renderTable("Andreas", lists[1], booty.andreas, tables)
-      tables.append(`<div>${booty.whoOwe} owe ${booty.amount}</div>`)
-    })
+  Promise.all([loadList(angelinaListID), loadList(andreasListID)]).then(lists => {
+    const tables = $(".tables"),
+          booty = DivvyUpTheBooty(lists[0], lists[1])
+    tables.empty()
+    renderTable("Angelina", lists[0], booty.angelina, tables)
+    renderTable("Andreas", lists[1], booty.andreas, tables)
+    tables.append(`<div>${booty.whoOwe} owe ${booty.amount}</div>`)
   })
 }
