@@ -1,7 +1,7 @@
 var tyrsta = "59abb93b56d8cfafda3b0e5f",
     breakList = "59b69f8384c268984ad9d602",
     authenticationFailure = function() {
-      console.log("Failed authentication")
+      console.error("Failed authentication")
     }
 
 Trello.authorize({
@@ -20,6 +20,7 @@ function getUserData() {
     sessionStorage.setItem("id", data.id)
   }).then(function() {
     loadTables()
+    loadBoardLists(tyrsta)
   })
 }
 
@@ -30,15 +31,21 @@ function loadTables() {
       if (!table.closed)
         tableBody.append(`<tr><td>${table.name}</td><td>${table.id}</td></tr>`)
     })
-  }).then(function() {
-    loadBoardLists(tyrsta)
+  })
+}
+
+function loadList(id) {
+  return new Promise((resolve, reject) => {
+    Trello.get(`lists/${id}/cards`, cards => {
+      resolve(cards.map(card => ParseMoney(card.name)))
+    })
   })
 }
 
 function loadBoardLists(boardId) {
   Trello.get(`boards/${boardId}/lists/`, function boardInfo(data) {
-    Trello.get(`lists/${data[0].id}/cards`, function allCards(cards) {
-      console.log(cards)
+    Promise.all([loadList(data[4].id), loadList(data[5].id)]).then(lists => {
+      console.log(DivvyUpTheBooty(lists[0], lists[1]))
     })
   })
 }

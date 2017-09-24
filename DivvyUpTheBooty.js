@@ -11,11 +11,10 @@ function DivvyUpTheBooty(angelinaList, andreasList) {
 function handleList(list) {
   let total = 0
   list.forEach((item) => {
-    let money = ParseMoney(item)
-    if (money.owedDontSplit)
-      total += money.amount
+    if (item.owedDontSplit)
+      total += item.amount
     else
-      total += money.amount / 2
+      total += item.amount / 2
   })
   return total
 }
