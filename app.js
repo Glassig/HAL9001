@@ -28,7 +28,7 @@ function getUserData() {
 function loadList(id) {
   return new Promise((resolve, reject) => {
     Trello.get(`lists/${id}/cards`, cards => {
-      resolve(cards.map(card => ParseMoney(card.name)))
+      resolve(cards.map(card => parseMoney(card.name)))
     })
   })
 }
@@ -61,7 +61,7 @@ function renderTable(name, list, sum, container) {
 function loadBoardLists(boardId) {
   Promise.all([loadList(angelinaListID), loadList(andreasListID)]).then(lists => {
     const tables = $(".tables"),
-          booty = DivvyUpTheBooty(lists[0], lists[1])
+          booty = divvyUpTheBooty(lists[0], lists[1])
     tables.empty()
     renderTable("Angelina", lists[0], booty.angelina, tables)
     renderTable("Andreas", lists[1], booty.andreas, tables)

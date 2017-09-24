@@ -1,4 +1,4 @@
-function DivvyUpTheBooty(angelinaList, andreasList) {
+function divvyUpTheBooty(angelinaList, andreasList) {
   const angelina = handleList(angelinaList)
   const andreas = handleList(andreasList)
   const debt = andreas - angelina;
@@ -21,7 +21,7 @@ function handleList(list) {
   return total
 }
 
-function ParseMoney(rawString) {
+function parseMoney(rawString) {
   var groups = /^(@?)([-\d]+)\s*([\s\wåäö]+)$/.exec(rawString)
   if (groups === null || groups.length !== 4)
     throw new Error(`Could not parse string ${rawString} result became ${groups}`)

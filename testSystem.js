@@ -35,10 +35,10 @@ Suite.prototype.finalize = function() {
     console.log(`Somethings up! ${failedTests} / ${this.tests.length} tests failed!`)
 }
 
-function Assert(test) {
+function assert(test) {
   if (!test) throw Error("Assert!")
 }
 
-function AssertEqual(a, b) {
+function assertEqual(a, b) {
   if (a !== b) throw Error(`Assert! ${a} !== ${b}`)
 }
