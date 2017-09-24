@@ -3,7 +3,7 @@ function divvyRaw(person1, person2) {
 }
 
 let suite = new Suite("Logic")
-suite.test("The testsuite should be greed", () => {})
+suite.test("The testsuite should be green", () => {})
 suite.test("Testsuite should be able to fail", () => { assert(false) }, false)
 suite.test("AssertEqual", () => { assertEqual(0, 0) })
 suite.test("!AssertEqual", () => { assertEqual(0, 1) }, false)
