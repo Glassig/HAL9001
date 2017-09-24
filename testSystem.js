@@ -1,11 +1,5 @@
-function Suite(name) {
-  this.name = name
-  this.tests = []
-}
-
-Suite.prototype.test = function(description, callback, shouldSucceed = true) {
+function test(description, callback, shouldSucceed = true) {
   const Result = flip => {
-    this.tests.push(flip)
     if (flip) {
       console.log(description + "... OK!")
       return true
@@ -27,12 +21,12 @@ Suite.prototype.test = function(description, callback, shouldSucceed = true) {
   }
 }
 
-Suite.prototype.finalize = function() {
-  const failedTests = this.tests.filter((test) => !test).length
+function finalize(tests) {
+  const failedTests = tests.filter((test) => !test).length
   if (failedTests === 0)
-    console.log("All " + this.tests.length + " tests are green!")
+    console.log("All " + tests.length + " tests are green!")
   else
-    console.log(`Somethings up! ${failedTests} / ${this.tests.length} tests failed!`)
+    console.log(`Somethings up! ${failedTests} / ${tests.length} tests failed!`)
 }
 
 function assert(test) {
