@@ -28,7 +28,17 @@ function getUserData() {
 function loadList(id) {
   return new Promise((resolve, reject) => {
     Trello.get(`lists/${id}/cards`, cards => {
-      resolve(cards.map(card => parseMoney(card.name)))
+      resolve(cards.map(card => {
+        try {
+          return parseMoney(card.name)
+        } catch (exception) {
+          console.error(exception)
+          return {
+            error: exception
+          }
+        }
+      }
+      ))
     })
   })
 }
@@ -44,11 +54,16 @@ function renderTable(name, list, sum, container) {
       </thead>
       <tbody>
         ${list.map(card => `
-          <tr>
-            <td>${card.amount} kr</td>
-            <td>${card.owedDontSplit ? "Owed" : "Split"}</td>
-          </tr>
-        `).join("")}
+          ${card.error ? `
+            <tr class="error">
+              <td colspan="2">${card.error}</td>
+            </tr>
+          ` : `
+            <tr>
+              <td>${card.amount} kr</td>
+              <td>${card.owedDontSplit ? "Owed" : "Split"}</td>
+            </tr>
+          `}`).join("")}
         <tr>
           <td>${sum} kr</td>
           <td>Total Shared</td>
