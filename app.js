@@ -19,18 +19,7 @@ function getUserData() {
   Trello.get("/members/me", function dataInfo(data) {
     sessionStorage.setItem("id", data.id)
   }).then(function() {
-    loadTables()
     loadBoardLists(tyrsta)
-  })
-}
-
-function loadTables() {
-  var id = sessionStorage.getItem("id"), tableBody = $(".table_body")
-  Trello.get(`members/${id}/boards`, function tableInfo(data) {
-    data.forEach(function createOneRow(table) {
-      if (!table.closed)
-        tableBody.append(`<tr><td>${table.name}</td><td>${table.id}</td></tr>`)
-    })
   })
 }
 
@@ -42,10 +31,40 @@ function loadList(id) {
   })
 }
 
+function renderTable(name, list, sum, container) {
+  container.append(`
+    <table class="primary">
+      <thead>
+        <tr>
+          <th>${name}</th>
+          <th>Split/Owed</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${list.map(card => `
+          <tr>
+            <td>${card.amount} kr</td>
+            <td>${card.owedDontSplit ? "Owed" : "Split"}</td>
+          </tr>
+        `).join("")}
+        <tr>
+          <td>${sum} kr</td>
+          <td>Total Shared</td>
+        </tr>
+      </tbody>
+    </table>
+  `)
+}
+
 function loadBoardLists(boardId) {
   Trello.get(`boards/${boardId}/lists/`, function boardInfo(data) {
     Promise.all([loadList(data[4].id), loadList(data[5].id)]).then(lists => {
-      console.log(DivvyUpTheBooty(lists[0], lists[1]))
+      const tables = $(".tables")
+      tables.empty()
+      const booty = DivvyUpTheBooty(lists[0], lists[1])
+      renderTable("Angelina", lists[0], booty.angelina, tables)
+      renderTable("Andreas", lists[1], booty.andreas, tables)
+      tables.append(`<div>${booty.whoOwe} owe ${booty.amount}</div>`)
     })
   })
 }

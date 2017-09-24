@@ -1,8 +1,10 @@
 function DivvyUpTheBooty(angelinaList, andreasList) {
-  let debt = 0
-  debt -= handleList(angelinaList)
-  debt += handleList(andreasList)
+  const angelina = handleList(angelinaList)
+  const andreas = handleList(andreasList)
+  const debt = andreas - angelina;
   return {
+    angelina: angelina,
+    andreas: andreas,
     whoOwe: debt === 0 ? "Even" : (debt > 0 ? "Angelina" : "Andreas"),
     amount: Math.abs(debt)
   }
