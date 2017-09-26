@@ -25,6 +25,18 @@ function getUserData() {
   })
 }
 
+function loadBoardLists(boardId) {
+  Promise.all([loadList(angelinaListID), loadList(andreasListID)]).then(lists => {
+    const tables = $(".tables"),
+          booty = divvyUpTheBooty(lists[0], lists[1])
+    $(".loading").hide()
+    tables.show()
+    renderTable("Angelina", lists[0], booty.angelina, tables)
+    renderTable("Andreas", lists[1], booty.andreas, tables)
+    $(".debt-summary").html(`${booty.whoOwe} <br> owe ${booty.amount}`)
+  })
+}
+
 function loadList(id) {
   return new Promise((resolve, reject) => {
     Trello.get(`lists/${id}/cards`, cards => {
@@ -45,7 +57,7 @@ function loadList(id) {
 
 function renderTable(name, list, sum, container) {
   container.append(`
-    <table class="primary">
+    <table class="money-table">
       <thead>
         <tr>
           <th>${name}</th>
@@ -71,15 +83,4 @@ function renderTable(name, list, sum, container) {
       </tbody>
     </table>
   `)
-}
-
-function loadBoardLists(boardId) {
-  Promise.all([loadList(angelinaListID), loadList(andreasListID)]).then(lists => {
-    const tables = $(".tables"),
-          booty = divvyUpTheBooty(lists[0], lists[1])
-    tables.empty()
-    renderTable("Angelina", lists[0], booty.angelina, tables)
-    renderTable("Andreas", lists[1], booty.andreas, tables)
-    tables.append(`<div>${booty.whoOwe} owe ${booty.amount}</div>`)
-  })
 }

@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#00afd9">
   <title>Trello breaker of madness</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="stylesheet" href="style.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/picnic@6.4.0/picnic.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-  <h1>HAL9001</h1>
-  <div class="tables">Loading...</div>
+  <h1 class="page-title"><span class="hal">HAL</span><span class="nine-thousand">9001</span></h1>
+  <div class="hal-eye">
+    <button class="circle debt-summary">
+      Pay the sum!
+    </button>
+  </div>
+  <div class="economy-square">
+    <div class="loading">Loading...</div>
+    <div class="flex one two-600 four-1200 tables hidden"></div>
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
   <script src="https://api.trello.com/1/client.js?key=bdd436fc0557ec76b9f4c0e3d5184315"></script>
   <script type="text/javascript" src="/app.js"></script>
