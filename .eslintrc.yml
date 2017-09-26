@@ -6,7 +6,8 @@ extends:
   - standard
 globals:
   Trello: true
-  DivvyUpTheBooty: true
+  divvyUpTheBooty: true
+  parseMoney: true
 rules:
   indent:
     - error

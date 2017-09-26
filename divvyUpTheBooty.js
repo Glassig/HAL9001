@@ -1,7 +1,7 @@
 function divvyUpTheBooty(angelinaList, andreasList) {
   const angelina = handleList(angelinaList)
   const andreas = handleList(andreasList)
-  const debt = andreas - angelina;
+  const debt = andreas - angelina
   return {
     angelina: angelina,
     andreas: andreas,
