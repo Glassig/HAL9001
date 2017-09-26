@@ -1,3 +1,51 @@
-table .error {
-    background-color: #ff4136;
-}
+html body {
+  margin: 10px;
+  background-color: black;
+  color: white;
+  font-family: 'Lato', sans-serif; }
+
+.page-title {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  padding: 0;
+  margin: auto auto 20px;
+  border: 3px solid white; }
+  .page-title .hal {
+    flex-grow: 1;
+    background-color: #00afd9;
+    text-align: right;
+    padding-right: 10px; }
+  .page-title .nine-thousand {
+    flex-grow: 1;
+    padding-left: 10px; }
+
+.hal-eye {
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  margin: auto auto 20px; }
+  .hal-eye button.circle {
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    padding-top: 0;
+    background-color: black;
+    background-image: radial-gradient(ellipse at center, #ffd57a 0%, #eb1006 7%, rgba(235, 16, 6, 0.86) 32%, rgba(133, 8, 4, 0.79) 54%, rgba(95, 5, 2, 0.75) 64%, rgba(0, 0, 0, 0.75) 89%); }
+
+.economy-square .flex {
+  margin: 0; }
+  .economy-square .flex .money-table {
+    border: 3px solid white;
+    margin-right: 10px; }
+    .economy-square .flex .money-table thead tr th {
+      background-color: #00afd9; }
+    .economy-square .flex .money-table tr.error {
+      background-color: #ff4136; }
+    .economy-square .flex .money-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.25); }
+
+.debt-summary {
+  padding-top: 2rem; }
+
+/*# sourceMappingURL=style.css.map */
