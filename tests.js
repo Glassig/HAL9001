@@ -18,6 +18,9 @@ results.push(test("Complex Angelina owes", () => {
   assertEqual(booty.amount, 1000 - 108.5)
 }))
 results.push(test("Failed parse", () => {
-  DivvyRaw(["", "Cooking 100"], ["@@@"])
+  divvyRaw(["", "Cooking 100"], ["@@@"])
 }, false))
+results.push(test("Handles weird characters", () => {
+  divvyRaw(["140 kr ica taco-kväll@^#$%"], [])
+}))
 finalize(results)

@@ -24,7 +24,7 @@ function handleList(list) {
 }
 
 function parseMoney(rawString) {
-  var groups = /^(@?)([-\d]+)\s*([\s\wåäö]+)$/.exec(rawString)
+  var groups = /^(@?)([-\d]+)\s*(.+)$/.exec(rawString)
   if (groups === null || groups.length !== 4)
     throw new Error(`Could not parse string "${rawString}" result became ${groups}`)
   return {
