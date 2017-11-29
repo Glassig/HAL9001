@@ -8,6 +8,8 @@ globals:
   Trello: true
   divvyUpTheBooty: true
   parseMoney: true
+  test: true
+  assertEqual: true
 rules:
   indent:
     - error
